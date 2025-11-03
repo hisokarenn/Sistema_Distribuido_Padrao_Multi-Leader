@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  lider-a:
+    image: postgres:14-alpine
+    container_name: lider-a
+    hostname: lider-a # Nome do host para a rede interna Docker
+    environment:
+      - POSTGRES_USER=user_a
+      - POSTGRES_PASSWORD=pass_a
+      - POSTGRES_DB=db_a
+      - PGDATA=/var/lib/postgresql/data/pgdata_a
+    ports:
+      # ESSENCIAL: Expõe o serviço na porta 5432 para que outras máquinas possam se conectar
+      - "5432:5432"
+    volumes:
+      # Note o volume e o script de inicialização
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - lider-a-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    # Habilita o wal_level=logical para replicação
+    command: postgres -c wal_level=logical -c max_replication_slots=10 -c max_worker_processes=10
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  lider-a-data:
