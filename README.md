@@ -78,7 +78,7 @@ O sistema deve ser validado com uma **demonstração interativa ao vivo**.
 
 | Cenário de Teste | Objetivo | Resultado Esperado |
 | :--- | :--- | :--- |
-|**Escrita e Replicação**| Inserir um dado no Líder A e verificar se ele aparece imediatamente no Líder B (via Opção 2 ou 5). | ]Dado replicado e visível em todos os líderes online]. |
+|**Escrita e Replicação**| Inserir um dado no Líder A e verificar se ele aparece imediatamente no Líder B (via Opção 2 ou 5). | Dado replicado e visível em todos os líderes online]. |
 |**Simulação de Falhas** | Desligar o Docker do **Líder A**. Adicionar dados no Líder B. |Líder B continua aceitando escritas (Alta Disponibilidade). |
 |**Recuperação e Heal**  |Ligar o Docker do Líder A. Rodar a **Opção 10 (Forçar Sincronização)**. |O Líder A "puxa" (pull) os dados que perdeu. Ambos os líderes ficam sincronizados e operacionais. |
 | **Promoção da Fila** | Adicionar 3 alunos em 2 vagas (Aluno 3 fica `REJEITADA`). Remover Aluno 1 (`ACEITA`). | O Aluno 3 deve ser promovido automaticamente para `ACEITA`. |
