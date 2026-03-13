@@ -1,16 +1,15 @@
 # 🛠️ Laboratório de Prototipagem de Padrões Distribuídos - Multi-Líder (Nós Múltiplos)
 
-## 🔗 Visão Geral do Projeto
+##  Visão Geral do Projeto
 
 Este repositório contém a prototipagem de um **Sistema Distribuído Multi-Líder** que simula um Catálogo de Disciplinas e Matrículas em um ambiente de múltiplas máquinas (Nós).
 
 NO objetivo principal é demonstrar o funcionamento prático de um padrão de replicação/distribuição, focando na **Alta Disponibilidade (AP)** e na **Tolerância a Falhas**
 
-### 🎯 Padrão Implementado: Replicação Multi-Líder
+###  Padrão Implementado: Replicação Multi-Líder
 
 No padrão Multi-Líder, cada nó (Líder A, Líder B, etc.) aceita operações de escrita e leitura. A replicação é assíncrona, o que garante alta disponibilidade (os nós podem falhar, mas o sistema continua aceitando operações).
 
------
 
 ## ⚙️ Arquitetura e Tecnologias
 
@@ -21,9 +20,8 @@ No padrão Multi-Líder, cada nó (Líder A, Líder B, etc.) aceita operações 
 | **Orquestração** | Docker / Docker Compose |Usado para simular e gerenciar cada nó (Líder A, Líder B, etc.). |
 | **Identificação** | UUIDs | Usado como chave primária para todas as entidades (disciplinas e matrículas) para evitar colisões de ID durante escritas simultâneas. |
 
------
 
-## 🛑 Desafios Chave (Conflitos Resolvidos)
+##  Desafios Chave (Conflitos Resolvidos)
 
 Este protótipo foca em resolver dois problemas centrais do Multi-Líder:
 
@@ -36,8 +34,6 @@ Este protótipo foca em resolver dois problemas centrais do Multi-Líder:
 
 **Problema:** O uso de `DELETE` (apagar de verdade) levaria à "ressurreição de dados", pois um nó offline que volta a ficar online restauraria o dado que o outro nó havia apagado.
 **Solução (Soft Delete e Tombstones):** O sistema utiliza **Deleção Lógica (Soft Delete)** Em vez de apagar, ele marca a coluna `is_deleted = true` ou o `status = 'REMOVIDA'`. Isso permite que a sincronização (`sincronizacao.py`) entenda a diferença entre um dado que está "faltando" e um dado que foi "removido intencionalmente.
-
------
 
 ## 🚀 Como Executar o Protótipo
 
@@ -70,9 +66,8 @@ Este arquivo deve ser modificado em cada máquina para refletir o nome do servi�
     python main.py
     ```
     
------
 
-## 📝 Demonstrações de Validação (Roteiro)
+##  📝 Demonstrações de Validação (Roteiro)
 
 O sistema deve ser validado com uma **demonstração interativa ao vivo**.
 
